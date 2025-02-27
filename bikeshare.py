@@ -4,9 +4,13 @@ Bikeshare Data Analysis
 This script allows the user to explore US bikeshare data by computing various descriptive statistics.
 Users can filter the data by city, month, and day of the week.
 
-Author: [Your Name]
-Date: [Date]
+Author: [foofiter]
+Date: [20250227]
+
+Usage:
+    Run this script in a Python environment and follow the prompts to explore bikeshare data.
 """
+
 
 import time
 import pandas as pd
