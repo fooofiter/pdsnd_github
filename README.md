@@ -19,3 +19,7 @@ and extract insights on travel patterns.
 This project is based on the Udacity Data Science Nanodegree.  
 Documentation and concepts were adapted from Udacity's lessons.  
 
+## Additional Notes
+This project is part of the Udacity Data Science Nanodegree.  
+It demonstrates how to work with data using Python and Pandas.
+
