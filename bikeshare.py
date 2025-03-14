@@ -20,22 +20,25 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-def get_filters():
-    """
-    Asks the user to specify a city, month, and day to analyze.
-    
-    Returns:
-        city (str): Name of the city to analyze ('chicago', 'new york city', or 'washington').
-        month (str): Name of the month to filter by ('january' to 'june') or 'all' for no filter.
-        day (str): Name of the day of the week to filter by ('monday' to 'sunday') or 'all' for no filter.
-    """
-    print("Hello! Let's explore some US bikeshare data!")
-    
+def get_user_input(prompt, valid_options):
+    """Helper function to get valid user input."""
     while True:
-        city = input("Enter the city (chicago, new york city, washington): ").lower()
-        if city in CITY_DATA:
-            break
-        print("Invalid input. Please enter a valid city.")
+        user_input = input(prompt).lower()
+        if user_input in valid_options:
+            return user_input
+        print("Invalid input. Please enter a valid option.")
+
+def get_filters():
+    """Asks the user to specify a city, month, and day to analyze."""
+    print("Hello! Let's explore some US bikeshare data!")
+
+    city = get_user_input("Enter the city (chicago, new york city, washington): ", CITY_DATA.keys())
+    month = get_user_input("Enter the month (january to june) or 'all': ", ['january', 'february', 'march', 'april', 'may', 'june', 'all'])
+    day = get_user_input("Enter the day of the week or 'all': ", ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all'])
+
+    print('-'*40)
+    return city, month, day
+
     
     months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
     while True:
@@ -72,9 +75,11 @@ def load_data(city, month, day):
     df['day_of_week'] = df['Start Time'].dt.day_name().str.lower()
     df['hour'] = df['Start Time'].dt.hour
     
+    MONTHS = { 'january': 1, 'february': 2, 'march': 3, 'april': 4, 'may': 5, 'june': 6 }
+
     if month != 'all':
-        month_index = ['january', 'february', 'march', 'april', 'may', 'june'].index(month) + 1
-        df = df[df['month'] == month_index]
+        df = df[df['month'] == MONTHS[month]]
+
     
     if day != 'all':
         df = df[df['day_of_week'] == day]
